@@ -1,0 +1,47 @@
+<view class="pagehead">    
+  <view class="shoptabs">
+    <view id="{{index}}" class="tabcell {{currentC==index?'activetap':''}}" wx:for="{{tab}}" bindtap="tapchangge">{{item.name}}</view>
+  </view>
+</view>
+  
+    <scroll-view  scroll-y="true" class="scroll">
+      <navigator class="singelP" wx:for="{{products}}" wx:key="Pid" hover-class="none" open-type="navigate" url="./detail/detail?pid={{item.productId}}">
+        <image src="http://192.168.1.105:8080{{item.mainImage}}"class='ImgCover'></image>
+        <view class="sinR">
+          <view class="iName">{{item.name}}</view>
+          <view class="iDetail">{{item.detail}}</view>
+          <view class="iTips">
+            <view class="iTipscell">{{item.subtitle}}</view>
+          </view>
+          <view class="iPrice">
+            <view class="priceL">品牌</view>
+            <view class="priceR">{{item.brand}}</view>
+          </view>
+        </view>
+      </navigator>
+    </scroll-view>
+
+
+<!-- <view class="mask" wx:if="{{maskable}}" catchtap='hiddenpop'></view> -->
+<!-- <view class="pop-spec" hidden="{{popspec}}">
+  <view class='pop-spec-top'>
+    <view class="pop-title">{{tab[currentC].productlist[currentEq].Title}}</view>
+    <view catchtap='hiddenpop' class='chasign-wrap'>
+      <view class='chasign'></view>
+    </view>
+    <view class='pop-spec-desc'>规格：</view>
+    <view class="pop-spec-wrap">
+      <view wx:for="{{tab[currentC].productlist[currentEq].standardlist}}" data-index="{{index}}" class="pop-spec-cell {{index==currrntSpec?'taped':''}}" catchtap="selectspec">
+        <view class="">{{item.StandardName}}</view>
+      </view>
+    </view>
+  </view>
+  <view class='pop-bot'>
+    <view class='pop-price'>
+      <view class='symbol'>￥</view>
+      <view class='pop-price-txt'>{{tab[currentC].productlist[currentEq].standardlist[currrntSpec].Price}}</view>
+    </view>
+    <view class="choose-button" catchtap="joinCart">选好了</view>
+  </view>
+</view> -->
+<image class="popup" wx:if="{{popup}}" src='../../imgs/test/popupimg.jpg' style='width:558rpx;height:820rpx;' catchtap='tapcard'></image>

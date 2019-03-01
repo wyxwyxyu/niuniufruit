@@ -1,0 +1,50 @@
+<view wx:if="{{carts.length!==0}}" class='cartView' >   
+  <scroll-view class="scroll" scroll-y="true">
+  <view class="separate"></view>
+  <view wx:for="{{carts}}">
+    <view class="cart_container">
+      <image class="item-select" bindtap="switchSelect" data-index="{{index}}" data-id="{{item.productDetailId}}" src="{{item.checked==1?'../../imgs/icon/comment_select.png':'../../imgs/icon/comment_normal.png'}}" />
+
+      <!-- <image class="item-image" src="app.globalData.url{{item.mainImage}}"></image> -->
+
+      <view class="column">
+        <text class="title">{{item.name}}</text>
+        <view class="row"><text style='margin-top:1rpx；fontSize:10rpx;color:gray'>{{item.subtitle}}</text><text style="width:30rpx"></text>
+         <text >规格:{{item.specifications}}{{item.unit}}</text></view> 
+      
+      <view class="number-item">
+        <view class="selnum"  >
+          <view class="cut" bindtap="cutNumber" data-id="{{item.productDetailId}}" data-index="{{index}}">-</view>
+          <input value="{{item.quantity}}" class="number" disabled="true" type="number" />
+          <view class="add" bindtap="addNumber" data-id="{{item.productDetailId}}" data-index="{{index}}">+</view>
+        </view>
+          <text class="sku-price">  ￥</text>
+          <text class="sku-price">{{item.productTotalPrice}}</text>
+          <view class="sku">
+            <template is="quantity" data="{{ ...item.count, componentId: index }}" />
+          </view>
+        </view>
+
+      </view>
+    </view>
+    <view class="separate"></view>
+  </view>
+</scroll-view>
+<view class="bottom_total">
+  <view class="bottom_line"></view>
+
+  <view class="row">
+    <image class="item-allselect" bindtap="allSelect" src="{{isAllSelect?'../../imgs/icon/comment_select.png':'../../imgs/icon/comment_normal.png'}}" />
+    <text class="small_text">全选</text>
+    <text>合计:￥ </text>
+    <text class="price">{{totalMoney}}</text>
+    <button class="button-red" bindtap="toBuy" formType="submit">去结算</button>
+  </view>
+</view>
+</view>
+<view wx:else class="blank">
+  <view class='car-blank-wrap'>
+    <image src='../../imgs/icon/car-blank.png'></image>
+  </view>
+  <view class='car-blank-desc'>你的购物车是空的</view>
+</view>

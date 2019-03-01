@@ -1,0 +1,78 @@
+<swiper class="cover-swiper" indicator-dots>  
+  <swiper-item wx:for="{{detail.ImgGroup}}">
+    <image src="{{item}}" mode="aspectFit" style="width:516rpx;height:320rpx;"></image>
+  </swiper-item>
+</swiper>
+<view class="intro-wrap">
+  <view class="title">
+    <view class="tit-name">{{detail.name}}</view>
+    <!-- <view class="tit-free" wx:if="{{detail.standardlist[currentSpec].Free&&detail.standardlist[currentSpec].Free!==''}}">{{'送'+detail.standardlist[currentSpec].Free}}</view> -->
+  </view>
+  <view class="effect">{{detail.subtitle}}</view>
+  <!-- <view class="originalprice">{{detail.Tips}}</view> -->
+  <view class="choose">
+    <view class="spec">
+      <view class="spec-tit">选择规格:</view>
+      <view class="spec-wrap">
+        <view class="spec-cell {{index===currentSpec?'tapd-spec-cell':''}}" data-index="{{index}}" wx:for="{{detail.productDetailList}}" catchtap="selectspec">
+          {{item.sepification}}{{item.unit}}
+        </view>
+      </view>
+    </view>
+    <view class="spec-price">
+      <view class="">价格:</view>
+      <view class="spec-price-active">{{'¥ '+detail.productDetailList[currentSpec].price}}</view>
+      <text style='width:30rpx'>    </text>
+      <view class="">库存:</view>
+      <view class="spec-price-active">{{detail.productDetailList[currentSpec].stock}}</view>
+    </view>
+    <view class="spec-price">
+      
+    </view>
+     <view class="spec-price">
+      <view class="number-item">
+        <view class="name">数量</view>
+        <view class="selnum">
+          <view class="cut" bindtap="cutNumber">-</view>
+          <input value="{{number}}" class="number" disabled="true" type="number" />
+          <view class="add" bindtap="addNumber">+</view>
+        </view>
+      </view>
+      <!-- <view class="spec-price-active">{{detail.productDetailList[currentSpec].stock}}</view> -->
+    </view>
+  </view>
+  <!-- <view class="spec-descript" wx:if="{{detail.standardlist[currentSpec].DesName}}">
+    <view>规格说明:</view>
+    <view class='spec-DesName'>{{detail.standardlist[currentSpec].DesName}}</view>
+  </view> -->
+</view>
+<view class="post">
+  <image src="../../../imgs/marks/post-icon.gif" style="width:28rpx;height:31rpx;margin-right:10rpx;"></image>
+  <view class="">{{'配送费¥10'}}</view>
+</view>
+<view class="descript">{{detail.detail}}
+</view>
+<view class='placeview'></view>
+<view class="bottom-btn">
+    <view class="l l-collect {{ openAttr ? 'back' : ''}}" bindtap="closeAttrOrCollect">
+      <image class="icon" src="{{ collectBackImage }}"></image>
+    </view>
+    <view class="l l-cart">
+      <view class="box">
+        <image bindtap="openCartPage" class="icon" src="/static/images/ic_menu_shoping_nor.png"></image>
+      </view>
+    </view>
+    <view class="r" bindtap="addToCart" >加入购物车</view>
+  </view>
+<!-- <view class="bottom">
+  <navigator class="gocar" open-type="switchTab" url="../../ticket/ticket">
+    <image src="../../../imgs/marks/detail-cart.png" style="width:42rpx;height:40rpx;"></image>
+  </navigator>
+  <view class="l l-collect {{ openAttr ? 'back' : ''}}" bindtap="closeAttrOrCollect">
+      <image class="icon" src="{{ collectBackImage }}"></image>
+  </view>
+  <!-- <button open-type="share" class="share-button" hover-class="none" bindtap="closeAttrOrCollect">
+    <image class="icon" src="../../../imgs/icon/icon_collect.png" ></image>
+  </button> -->
+  <!-- <view class="joincar" catchtap="joincar">加入购物车</view>
+</view> --> 
