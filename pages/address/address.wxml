@@ -1,0 +1,17 @@
+<view class='head'>
+  <button size='mini' class='but-i' bindtap='addNew'>添加新地址</button>
+</view>
+
+<view>
+<van-card
+  num="2"
+  price="10.00"
+  desc="描述信息"
+  title="商品标题"
+>
+  <view slot="footer">
+    <button size="mini" class='but-d'>删除</button>
+    <button size="mini" class='but-u'>编辑</button>
+  </view>
+</van-card>
+</view>

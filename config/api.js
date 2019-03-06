@@ -1,4 +1,4 @@
-const ApiRootUrl = 'http://192.168.1.103:8080/';
+const ApiRootUrl = 'http://192.168.1.105:8080/';
 
 module.exports = {
   GetRootCategory: ApiRootUrl + 'category/getRootCategory.do',//分类根节点接口

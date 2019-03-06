@@ -1,0 +1,25 @@
+.but-d{
+  border: 1px solid #b4282d;
+  background: #b4282d;
+  text-align: center;
+  color: #fff;
+  margin: 10rpx;
+}
+
+.but-u{
+  text-align: center;
+  color: #333;
+  border: 1px solid #f4f4f4;
+  margin: 10rpx;
+}
+
+.head{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+.head.but-i{
+  text-align: center;
+  color: #333;
+  border: 1px solid #f4f4f4;
+}

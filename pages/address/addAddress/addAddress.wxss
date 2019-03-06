@@ -1,0 +1,60 @@
+
+	.container{
+	    background-color: #f5f5f9;
+	    justify-content: initial;
+	}
+
+	.form-box{
+	    width:100%;
+	    background-color: #fff;
+	    margin-top: 20rpx;
+	}
+
+	.row-wrap{
+	    width: 720rpx;
+	    height: 88rpx;
+	    line-height: 88rpx;
+	    margin-left: 30rpx;
+	    border-bottom: 1rpx solid #eee;
+	    display: flex;
+	    font-size: 28rpx;
+	    /*justify-content: space-between;*/
+	}
+
+	.row-wrap .label{
+	    width: 160rpx;
+	    color: #000;
+	}
+
+  .row-wrap .arrow{
+	    padding-right: 50rpx;
+	}
+
+	.row-wrap .label-right{
+	    flex: 1;
+	    height: 88rpx;
+	    line-height: 88rpx;
+      word-break: break-all;
+	}
+
+
+	.row-wrap .label-right input{
+	    height: 100%;
+	    font-size: 28rpx;
+	    padding-right: 30rpx;
+	}
+
+
+	.save-btn{
+	    width: 690rpx;
+	    height: 80rpx;
+	    line-height: 80rpx;
+	    text-align: center;
+	    margin-top:30rpx;
+	    border-radius: 6rpx;
+	    box-sizing: border-box;
+      background-color: #e64340;
+	    color:#fff;
+	}
+
+

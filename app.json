@@ -33,7 +33,9 @@
     "pages/shopping/address/address",
     "pages/shopping/addressAdd/addressAdd",
     "pages/goods/goods",
-    "pages/topicDetail/topicDetail"
+    "pages/topicDetail/topicDetail",
+	  "pages/address/address",
+    "pages/address/addAddress/addAddress"
   ],
   "window": {
     "backgroundTextStyle": "dark",
