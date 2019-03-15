@@ -1,8 +1,5 @@
 const util = require('../../../utils/util.js');
 const api = require('../../../config/api.js');
-const user = require('../../../services/user.js');
-const car = require('../../../utils/car')
-const app = getApp()
 Page({
   data: {
     postage: 39,
@@ -37,6 +34,11 @@ Page({
   openCartPage: function () {
     wx.switchTab({
       url: '/pages/cart/cart',
+      success: function (e) {
+        var page = getCurrentPages().pop();
+        if (page == undefined || page == null) return;
+        page.onLoad();
+      } 
     });
   },
   cutNumber: function () {
@@ -71,29 +73,29 @@ Page({
       }
     } else {
       //添加或是取消收藏
-      util.request(api.CollectAddOrDelete, { typeId: 0, valueId: this.data.id }, "POST")
-        .then(function (res) {
-          let _res = res;
-          if (_res.errno == 0) {
-            if (_res.data.type == 'add') {
-              that.setData({
-                'collectBackImage': that.data.hasCollectImage
-              });
-            } else {
-              that.setData({
-                'collectBackImage': that.data.noCollectImage
-              });
-            }
+      // util.request(api.CollectAddOrDelete, { typeId: 0, valueId: this.data.id }, "POST")
+      //   .then(function (res) {
+      //     let _res = res;
+      //     if (_res.errno == 0) {
+      //       if (_res.data.type == 'add') {
+      //         that.setData({
+      //           'collectBackImage': that.data.hasCollectImage
+      //         });
+      //       } else {
+      //         that.setData({
+      //           'collectBackImage': that.data.noCollectImage
+      //         });
+      //       }
 
-          } else {
-            wx.showToast({
-              image: '/static/images/icon_error.png',
-              title: _res.errmsg,
-              mask: true
-            });
-          }
+      //     } else {
+      //       wx.showToast({
+      //         image: '/static/images/icon_error.png',
+      //         title: _res.errmsg,
+      //         mask: true
+      //       });
+      //     }
 
-        });
+      //   });
     }
 
   },

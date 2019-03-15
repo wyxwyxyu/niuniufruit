@@ -1,6 +1,6 @@
 const util = require('../../utils/util.js');
 const api = require('../../config/api.js');
-const user = require('../../services/user.js');
+var app = getApp()
 
 Page({
 
@@ -12,7 +12,7 @@ Page({
     totalMoney: 0, 
     number: 1, 
     selectFlag:false,               
-
+    url: app.globalData.url
   },
 
   /**
@@ -39,8 +39,7 @@ Page({
   loadData:function(){
     var that = this;
     util.request(api.GetCart + '?shopId=' + "539dce6cf2a84e7f801539c2acf97abb").then(function (res) {
-      console.log(res.data.data.cartProductVoList)
-
+      console.log(res)
       if (res.data.status == 0) {
         wx.hideLoading()
         that.setData({
@@ -55,8 +54,6 @@ Page({
   updateCount:function(id,count){
     var that=this;
     util.request(api.CartCountUpdate + '?shopId=' + "539dce6cf2a84e7f801539c2acf97abb" + '&productDetailId=' + id + '&count=' + count).then(function (res) {
-      console.log(res.data.data.cartProductVoList)
-
       if (res.data.status == 0) {
         wx.hideLoading()
         that.loadData()
@@ -68,7 +65,29 @@ Page({
     let id = e.target.dataset.id, index = e.target.dataset.index;
     var that = this;
     var count = that.data.carts[index].quantity -1;
-    that.updateCount(id, count)
+    if(count==0){
+      wx.showModal({
+        title: '删除商品',
+        content: '确定删除该商品吗？',
+        success(res) {
+          if (res.confirm) {
+            util.request(api.CartDelete + '?shopId=' + "539dce6cf2a84e7f801539c2acf97abb" + '&productDetailIds=' + id ).then(function (res) {
+              console.log(res)
+
+              if (res.data.status == 0) {
+                wx.hideLoading()
+                that.loadData()
+              }
+            });
+          } else if (res.cancel) {
+            
+          }
+        }
+      })
+    }else{
+      that.updateCount(id, count)
+    }
+    
   },
   addNumber: function (e) {
     let id = e.target.dataset.id, index = e.target.dataset.index;
@@ -151,22 +170,25 @@ allSelect: function (e) {
   },
   //去结算
   toBuy:function(){
-    util.request(api.CartCountUpdate + '?shopId=' + "539dce6cf2a84e7f801539c2acf97abb" + '&productDetailId=' + id + '&count=' + count).then(function (res) {
-      console.log(res.data.data.cartProductVoList)
-
-      if (res.data.status == 0) {
-        wx.hideLoading()
-        that.loadData()
-      }
-    });
-    wx.showToast({
-      title: '去结算',
-      icon:'success',
-      duration:2000
-    });
-    this.setData({
-      showDialog: !this.data.showDialog
+    wx.navigateTo({
+      url: '../ucenter/orderConfirm/orderConfirm',
     })
+    // util.request(api.CartCountUpdate + '?shopId=' + "539dce6cf2a84e7f801539c2acf97abb" + '&productDetailId=' + id + '&count=' + count).then(function (res) {
+    //   console.log(res.data.data.cartProductVoList)
+
+    //   if (res.data.status == 0) {
+    //     wx.hideLoading()
+    //     that.loadData()
+    //   }
+    // });
+    // wx.showToast({
+    //   title: '去结算',
+    //   icon:'success',
+    //   duration:2000
+    // });
+    // this.setData({
+    //   showDialog: !this.data.showDialog
+    // })
   },
 
 
@@ -181,7 +203,7 @@ allSelect: function (e) {
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+    this.onLoad();
   },
   deltnum: function (e) {
     var index = e.currentTarget.dataset.index

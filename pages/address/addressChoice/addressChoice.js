@@ -1,11 +1,12 @@
-const util = require('../../utils/util.js');
-const api = require('../../config/api.js');
+const util = require('../../../utils/util.js');
+const api = require('../../../config/api.js');
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    addressList: []
 
   },
 
@@ -13,23 +14,33 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.loadData();
 
   },
-  searchHandle: function (e) {
-    var searchContent = e.detail.value
+  loadData: function () {
     var that = this;
-    util.request(api.SearchProduct + '?productName=' + searchContent).then(function (res) {
-      wx.hideLoading();
+    util.request(api.ShippingSelect + '?shopId=' + "539dce6cf2a84e7f801539c2acf97abb" + "&pageNum=" + 1 + "&pageSize=" + 10).then(function (res) {
+      console.log(res)
       if (res.data.status == 0) {
-        var array = res.data.data.list
-        console.log(res)
+        wx.hideLoading()
         that.setData({
-          item: array,
-          flag: true
+          addressList: res.data.data.list
         })
       }
-    })
+    });
+  },
+  addressChoice: function (e) {
+    var id = e.currentTarget.dataset.id;
+    var idx = e.currentTarget.dataset.idx;
+    try {
+      wx.setStorageSync('shippingId', id);
+      wx.setStorageSync('shippingIndex', idx);
+    } catch (e) {
 
+    }
+    wx.redirectTo({
+      url: '/pages/ucenter/orderConfirm/orderConfirm'
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -42,7 +53,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.onLoad();
   },
 
   /**
@@ -78,5 +89,16 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+
+
+  //添加新地址
+
+  addNew: function () {
+    wx.navigateTo({
+      url: '/pages/address/addAddress/addAddress',
+    });
+  },
+
+
 })

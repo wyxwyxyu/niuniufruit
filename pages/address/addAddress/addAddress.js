@@ -1,6 +1,8 @@
+const util = require('../../../utils/util.js');
+const api = require('../../../config/api.js');
 var QQMapWX = require('../../../lib/qqmap-wx-jssdk.js');
 var qqmapsdk;
-
+var addressList = null;
 Page({
 
   /**
@@ -16,6 +18,7 @@ Page({
     latitude: 0,
     longitude: 0,
     selectaddressFlag:false,  //用户是否选择地址的标记
+    
     
   },
 
@@ -50,6 +53,9 @@ Page({
           success: function (addressRes) {
             var address = addressRes.result.formatted_addresses.recommend;
             mobileLocation.selectaddress = address;
+            
+            
+            
             that.setData({
               mobileLocation: mobileLocation,
             });
@@ -60,7 +66,7 @@ Page({
       }
     });
 
-    this.mapCtx = wx.createMapContext('qqMap');
+    //this.mapCtx = wx.createMapContext('qqMap');
   },
 
   /**
@@ -74,7 +80,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
   },
 
   /**
@@ -121,6 +126,10 @@ Page({
     var linkman = e.detail.value.linkman; //联系人
     var mobile = e.detail.value.mobile;  //手机号码
 
+    var selectaddress = this.data.mobileLocation.selectaddress;
+    var longitude = this.data.mobileLocation.longitude; //经度
+    var latitude = this.data.mobileLocation.latitude;
+
     if (selectaddressFlag == false) {
       wx.showModal({
         title: '提示',
@@ -147,19 +156,19 @@ Page({
         content: '手机号格式不正确!',
       })
     } else {
-      let userAddress = {
-        addressNum: addressNum,  //门牌号
-        linkman: linkman,  //联系人
-        mobile: mobile  //手机号
-      }
-      console.log('门牌号：' + userAddress.addressNum)
-      console.log('联系人：' + userAddress.linkman)
-      console.log('手机号：' + userAddress.mobile)
-
-      //传递数据
-      // wx.redirectTo({
-      //   url: '../address?address=' + address + '&addressNum=' + addressNum + '&linkman=' + linkman + '&mobile=' + mobile,
-      // });
+      console.log(mobile)
+      util.request(api.ShippingAdd + '?shopId=' + "539dce6cf2a84e7f801539c2acf97abb" + "&receiverName=" + linkman + "&receiverPhone=" + mobile + "&address=" + selectaddress + "&detailInformation=" + addressNum + "&location=" + latitude + ',' + longitude).then(function (res) {
+        if (res.data.status == 0) {
+          wx.hideLoading()
+          util.showSuccess()
+          setTimeout(function () {
+            wx.navigateBack({
+              delta: 1
+            })
+          }, 1500)
+        }
+      });
+     
     }
 
   },
@@ -171,20 +180,28 @@ Page({
     var selectaddressFlag = that.data.selectaddressFlag;
     wx.chooseLocation({
       success: function (res) {
-        let mobileLocation = {
-          longitude: res.longitude,  //经度
-          latitude: res.latitude,  //纬度
-          selectaddress: res.address,
-        };
-        that.setData({
-          mobileLocation: mobileLocation,
-          selectaddressFlag:true
-        });
+        if(res.address==''){
+          wx.showToast({
+            title: '未选择地址',
+            icon:'none',
+            duration:2000
+          })
+        }else{
+          let mobileLocation = {
+            longitude: res.longitude,  //经度
+            latitude: res.latitude,  //纬度
+            selectaddress: res.address,
+          };
+          that.setData({
+            mobileLocation: mobileLocation,
+            selectaddressFlag: true
+          });
+          console.log('当前选择位置：' + mobileLocation.selectaddress)
+          console.log('经度：' + mobileLocation.longitude)
+          console.log('纬度：' + mobileLocation.latitude)
 
-
-        console.log('当前选择位置：' + mobileLocation.selectaddress)
-        console.log('经度：' +mobileLocation.longitude)
-        console.log('纬度：' +mobileLocation.latitude)
+        }
+        
       },
       fail: function (err) { 
         

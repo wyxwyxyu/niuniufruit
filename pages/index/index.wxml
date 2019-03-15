@@ -6,7 +6,7 @@
   
     <scroll-view  scroll-y="true" class="scroll">
       <navigator class="singelP" wx:for="{{products}}" wx:key="Pid" hover-class="none" open-type="navigate" url="./detail/detail?pid={{item.productId}}">
-        <image src="http://192.168.1.105:8080{{item.mainImage}}"class='ImgCover'></image>
+        <image src="http://192.168.1.103:8080{{item.mainImage}}"class='ImgCover'></image>
         <view class="sinR">
           <view class="iName">{{item.name}}</view>
           <view class="iDetail">{{item.detail}}</view>

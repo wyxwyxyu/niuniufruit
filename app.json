@@ -5,14 +5,12 @@
     "pages/catalog/catalog",
     "pages/newGoods/newGoods",
     "pages/hotGoods/hotGoods",
-    "pages/ucenter/address/address",
-    "pages/ucenter/addressAdd/addressAdd",
     "pages/ucenter/footprint/footprint",
     "pages/ucenter/order/order",
     "pages/ucenter/orderDetail/orderDetail",
     "pages/ucenter/express/express",
     "pages/ucenter/feedback/feedback",
-    "pages/ucenter/coupon/coupon",
+    "pages/ucenter/orderConfirm/orderConfirm",
     "pages/ucenter/collect/collect",
     "pages/auth/login/login",
     "pages/auth/register/register",
@@ -29,13 +27,12 @@
     "pages/search/search",
     "pages/category/category",
     "pages/cart/cart",
-    "pages/shopping/checkout/checkout",
-    "pages/shopping/address/address",
-    "pages/shopping/addressAdd/addressAdd",
     "pages/goods/goods",
     "pages/topicDetail/topicDetail",
-	  "pages/address/address",
-    "pages/address/addAddress/addAddress"
+    "pages/address/address",
+    "pages/address/addAddress/addAddress",
+    "pages/address/addressChoice/addressChoice"
+
   ],
   "window": {
     "backgroundTextStyle": "dark",

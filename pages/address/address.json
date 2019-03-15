@@ -1,6 +1,7 @@
 {
   "navigationBarTitleText": "收货地址",
   "usingComponents": {
-    "van-card": "dist/card/index"
+    "van-card": "dist/card/index",
+    "van-radio":"dist/radio/index"
   }
 }

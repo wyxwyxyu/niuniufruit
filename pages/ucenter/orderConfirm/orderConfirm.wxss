@@ -1,34 +1,3 @@
-    page{
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-    }
-    .navbar{
-      flex: none;
-      display: flex;
-      background: #fff;
-    }
-    .navbar .item{
-      position: relative;
-      flex: auto;
-      text-align: center;
-      line-height: 80rpx;
-    }
-    .navbar .item.active{
-      color: #FFCC00;
-    }
-    .navbar .item.active:after{
-      content: "";
-      display: block;
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 4rpx;
-      background: #FFCC00;
-    }
-
-/*订单列表*/
 .orderDetails{
 	background: #fff;
 	border-bottom: 20rpx solid #f3f3f3;
@@ -44,6 +13,37 @@
 	height: 70rpx;
 	border-radius: 35rpx;
 	margin:15rpx;
+}
+.orderListTitle .userImg image{
+	border-radius: 35rpx;
+	width: 100%;
+	height: 100%;
+}
+.orderDetail{
+  background: #fff;
+	border-bottom: 20rpx solid #f3f3f3;
+}
+.orderListDetail{
+	display: flex;
+  flex-direction:row;
+	height: 180rpx;
+	border-bottom: 1rpx solid #f3f3f3;
+}
+.orderDetails{
+  display: flex;
+  flex-direction:row;
+  overflow: hidden;
+	background: #fff;
+	border-bottom: 20rpx solid #f3f3f3;
+}
+.orderListTitle{
+	height: 100rpx;
+	line-height: 100rpx;
+	border-bottom: 1rpx solid #f3f3f3;
+  overflow: hidden;
+}
+.orderListTitle .userName{
+overflow: hidden;
 }
 .orderListTitle .userImg image{
 	border-radius: 35rpx;
@@ -66,10 +66,12 @@
   flex-direction:row;
 	height: 180rpx;
 	border-bottom: 1rpx solid #f3f3f3;
+  overflow: hidden;
 }
 .orderListDetails .productImg{
+
 	height: 140rpx;
-  width:150rpx;
+  width:120rpx;
 	margin-top: 20rpx;
 	margin-left: 20rpx;
 }
@@ -100,13 +102,16 @@
 	float: right;
 	margin-right: 30rpx;
 }
-
-
-
-
-.img{
-    height:145.83rpx;
-    width:145.83rpx;
-    background: #f4f4f4;
+.btn{
+  width:100%;
+  height:100rpx;
+  display: flex;
+  flex-direction:row;
+  position: fixed;
+  bottom:0;
+  border: 1rpx solid #636262;
 }
-
+.linetxt{
+  color:red;
+  line-height: 100rpx;
+}

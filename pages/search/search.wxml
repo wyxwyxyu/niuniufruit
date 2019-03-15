@@ -1,2 +1,26 @@
-<!--pages/search/search.wxml-->
-<text>pages/search/search.wxml</text>
+<view class="search">
+  <view class="input">
+    <image class="icon"></image>
+    <input class="txt" placeholder='搜索商品' bindconfirm='searchHandle'></input>
+  </view>
+</view>
+<view wx-if="{{item.length>0}}">
+
+   <navigator class="singelP" wx:for="{{item}}" wx:key="Pid" hover-class="none" open-type="navigate" url="./putInHandle/putInHandle?pid={{item.productId}}">
+        <image src="http://192.168.1.105:8080{{item.mainImage}}"class='ImgCover'></image>
+        <view class="sinR">
+          <view class="iName">{{item.name}}</view>
+          <view class="iDetail">{{item.detail}}</view>
+          <view class="iTips">
+            <view class="iTipscell">{{item.subtitle}}</view>
+          </view>
+          <view class="iPrice">
+            <view class="priceL">品牌</view>
+            <view class="priceR">{{item.brand}}</view>
+          </view>
+        </view>
+      </navigator>
+
+
+</view>
+<view wx:elif="{{flag}}">没有找到相关商品</view>

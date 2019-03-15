@@ -1,2 +1,110 @@
-<!--pages/ucenter/order/order.wxml-->
-<text>pages/ucenter/order/order.wxml</text>
+<view class="navbar">
+  <text wx:for="{{navbar}}" data-idx="{{index}}" class="item {{currentTab==index ? 'active' : ''}}" wx:key="unique" bindtap="navbarTap">{{item}}</text>
+</view>
+
+<!--全部-->
+<view hidden="{{currentTab!==0}}">
+  <navigator  url="../orderDetail/orderDetail?id={{item.orderNo}}" wx:for="{{content}}" wx:key="{{item.orderNo}}" class="orderDetails">
+    <view class="orderListTitle">
+
+      <text class="userName">订单号：{{item.orderNo}}</text>
+      <text class="orderStatus">{{statusList[item.status]}}</text>
+    </view>
+    <view class="orderListDetails">
+      <view class="productImg" wx:for="{{content[index].orderItemVoList}}">
+        <image src="{{url}}{{item.productImage}}"></image>
+      </view>
+    </view>
+    <view class="productCount">
+      <view>合计：￥
+        <text>{{item.payPrice}}</text>
+      </view>
+    </view>
+  </navigator>
+</view>
+
+<!--待付款-->
+<view hidden="{{currentTab!==1}}">
+  <navigator  url="../orderDetail/orderDetail?id={{item.orderNo}}" wx:for="{{content}}" wx:key="{{item.orderNo}}" class="orderDetails">
+    <view class="orderListTitle">
+
+      <text class="userName">订单号：{{item.orderNo}}</text>
+      <text class="orderStatus">{{statusList[item.status]}}</text>
+    </view>
+    <view class="orderListDetails">
+      <view class="productImg" wx:for="{{content[index].orderItemVoList}}">
+        <image src="http://192.168.1.103:8080{{item.productImage}}"></image>
+      </view>
+    </view>
+    <view class="productCount">
+      <view>合计：￥
+        <text>{{item.payPrice}}</text>
+      </view>
+    </view>
+  </navigator>
+</view>
+
+<!--待发货-->
+<view hidden="{{currentTab!==2}}">
+  <navigator  url="../orderDetail/orderDetail?id={{item.orderNo}}" wx:for="{{content}}" wx:key="{{item.orderNo}}" class="orderDetails">
+    <view class="orderListTitle">
+
+      <text class="userName">订单号：{{item.orderNo}}</text>
+      <text class="orderStatus">{{statusList[item.status]}}</text>
+    </view>
+    <view class="orderListDetails">
+      <view class="productImg" wx:for="{{content[index].orderItemVoList}}">
+        <image src="http://192.168.1.103:8080{{item.productImage}}"></image>
+      </view>
+    </view>
+    <view class="productCount">
+      <view>合计：￥
+        <text>{{item.payPrice}}</text>
+      </view>
+    </view>
+  </navigator>
+</view>
+
+<!--待收货-->
+
+<view hidden="{{currentTab!==3}}">
+  <navigator  url="../orderDetail/orderDetail?id={{item.orderNo}}" wx:for="{{content}}" wx:key="{{item.orderNo}}" class="orderDetails">
+    <view class="orderListTitle">
+
+      <text class="userName">订单号：{{item.orderNo}}</text>
+      <text class="orderStatus">{{statusList[item.status]}}</text>
+    </view>
+    <view class="orderListDetails">
+      <view class="productImg" wx:for="{{content[index].orderItemVoList}}">
+        <image src="http://192.168.1.103:8080{{item.productImage}}"></image>
+      </view>
+    </view>
+    <view class="productCount">
+      <view>合计：￥
+        <text>{{item.payPrice}}</text>
+      </view>
+    </view>
+  </navigator>
+</view>
+
+
+<!--待评价-->
+<view hidden="{{currentTab!==4}}">
+  <navigator  url="../orderDetail/orderDetail?id={{item.orderNo}}" wx:for="{{content}}" wx:key="{{item.orderNo}}" class="orderDetails">
+    <view class="orderListTitle">
+
+      <text class="userName">订单号：{{item.orderNo}}</text>
+      <text class="orderStatus">{{statusList[item.status]}}</text>
+    </view>
+    <view class="orderListDetails">
+      <view class="productImg" wx:for="{{content[index].orderItemVoList}}">
+        <image src="http://192.168.1.103:8080{{item.productImage}}"></image>
+      </view>
+    </view>
+    <view class="productCount">
+      <view>合计：￥
+        <text>{{item.payPrice}}</text>
+      </view>
+    </view>
+  </navigator>
+</view>
