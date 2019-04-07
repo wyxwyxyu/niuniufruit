@@ -163,13 +163,35 @@ page{
     font-size: 25rpx;
 }
 
-.order-goods .item .price{
+.order-goods .item .p{
+    margin-top: 8rpx;
+    height: 33rpx;
+    line-height: 33rpx;
+    margin-bottom: 10.5rpx;
+}
+
+.order-goods .item .p .price{
+    display: block;
+    float: left;
+    line-height: 33rpx;
     height: 30rpx;
-    line-height: 30rpx;
     color: #333;
     font-size: 30rpx;
 }
 
+.order-goods .item .p .btncomment{
+    display: block;
+    float: right;
+    height: 33rpx;
+    text-align: right;
+    line-height: 33rpx;
+    font-size: 25rpx;
+    background: #b4282d;
+    color: #fff;
+    border-radius: 5rpx;
+    margin: 0 15rpx;
+    padding: 0 20rpx;
+}
 .order-bottom{
     margin-top: 20rpx;
     padding-left: 31.25rpx;

@@ -1,6 +1,6 @@
 <swiper class="cover-swiper" indicator-dots>  
-  <swiper-item wx:for="{{detail.ImgGroup}}">
-    <image src="{{item}}" mode="aspectFit" style="width:516rpx;height:320rpx;"></image>
+  <swiper-item wx:for="{{imgGroup}}">
+    <image src="{{url}}{{item}}" mode="aspectFit" style="width:516rpx;height:320rpx;"></image>
   </swiper-item>
 </swiper>
 <view class="intro-wrap">
@@ -50,7 +50,7 @@
   <image src="../../../imgs/marks/post-icon.gif" style="width:28rpx;height:31rpx;margin-right:10rpx;"></image>
   <view class="">{{'配送费¥10'}}</view>
 </view>
-<view class="descript">{{detail.detail}}
+<view class="descript">  <rich-text nodes="{{content}}"></rich-text>
 </view>
 <view class='placeview'></view>
 <view class="bottom-btn">

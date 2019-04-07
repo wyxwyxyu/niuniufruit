@@ -29,7 +29,11 @@
             <text class="number">x{{item.quantity}}</text>
           </view>
           <view class="attr">{{item.sepcification}}{{item.unit}}</view>
-          <view class="price">￥{{item.unitPrice}}</view>
+          <view class="p">
+            <view class="price">￥{{item.unitPrice}}</view>
+            <view wx-if="{{item.commentStatus==0&&oStatus==4}}" class="btncomment" bindtap="toComment">去评价</view>
+          </view>
+          
         </view>
       </navigator>
     </view>

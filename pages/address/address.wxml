@@ -1,7 +1,7 @@
 <view class='head'>
   <button size='mini' class='but-i' bindtap='addNew'>添加新地址</button>
 </view>
-
+<view wx:if="{{addressList.length>0}}">
 <view wx:for="{{addressList}}">
   <view class="addressarea">
     <view class="ui-list-item-info">{{item.receiverName}}
@@ -19,3 +19,5 @@
      <view class="separate"></view>
   </view>
 </view>
+</view>
+<view wx:else>暂无数据</view>

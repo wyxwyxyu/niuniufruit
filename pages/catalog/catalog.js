@@ -1,5 +1,6 @@
 var util = require('../../utils/util.js');
 var api = require('../../config/api.js');
+var app=getApp();
 Page({
 
   /**
@@ -12,21 +13,33 @@ Page({
     scrollLeft: 0,
     scrollTop: 0,
     goodsCount: 0,
-    scrollHeight: 0
+    scrollHeight: 0,
+    url: app.globalData.url
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getCatalog();
+    //this.getCatalog();
+    var that = this;
+    wx.request({
+      url: 'http://192.168.1.103:8080/category/' + 'selectCategoryByParentId.do?parentId=' + 'root',
+      method: "POST",
+      header: {
+        "content-type": "application/json",
+      },
+      success: function (res) {
+        console.log(res.data.data)
+        that.setData({
+          item: res.data.data
+        })
+      }
+    })
   },
   getCatalog: function () {
     //CatalogList
     let that = this;
-    wx.showLoading({
-      title: '加载中...',
-    });
     util.request(api.CatalogList).then(function (res) {
       that.setData({
         navList: res.data.categoryList,
@@ -61,12 +74,22 @@ Page({
   },
   switchCate: function (event) {
     var that = this;
-    var currentTarget = event.currentTarget;
-    if (this.data.currentCategory.id == event.currentTarget.dataset.id) {
-      return false;
-    }
-
-    this.getCurrentCategory(event.currentTarget.dataset.id);
+    console.log(e.currentTarget)
+    var categoryId = e.currentTarget.dataset.id;
+    this.setData({
+      categoryId: categoryId
+    });
+    wx.request({
+      url: 'http://192.168.1.103:8080/product/getProductByKeywordOrCategory.do?categoryId=' + categoryId,
+      method: "POST",
+      header: { "content-type": 'application/x-www-form-urlencoded' },  //发送数据
+      success: function (res) {
+        console.log(res);
+        that.setData({
+          categoryList: res.data.data.list
+        })
+      }
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -109,11 +132,31 @@ Page({
   onReachBottom: function () {
 
   },
-
+  
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
+
+  },
+  switchCate: function (e) {
+    var that = this;
+    console.log(e.currentTarget)
+    var categoryId = e.currentTarget.dataset.id;
+    this.setData({
+      categoryId: categoryId
+    });
+    wx.request({
+      url: 'http://192.168.1.103:8080/product/getProductByKeywordOrCategory.do?categoryId=' + categoryId,
+      method: "POST",
+      header: { "content-type": 'application/x-www-form-urlencoded' },
+      success: function (res) {
+        console.log(res);
+        that.setData({
+          categoryList: res.data.data.list
+        })
+      }
+    })
 
   }
 })

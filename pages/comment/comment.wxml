@@ -1,2 +1,57 @@
-<!--pages/comment/comment.wxml-->
-<text>pages/comment/comment.wxml</text>
+<form >
+<!--星星评价-->
+<!--<view class='star-box'>
+<view class="star-title">物品评价</view>
+<view class="star-pos">
+    <image class='stars' bindtap="changeColor" data-text="物品评价" data-index='0' data-no="{{item}}" wx:for="{{stardata}}"
+    src="{{flag[0]>=item? '../../imgs/icon/star_selected.png':'../../imgs/icon/star_unselect.png'}}" />
+    <view style='margin-left: 30rpx;'>{{startext[0]}}</view>
+</view>
+ 
+<view class="star-title">物流服务</view>
+ <view class="star-pos">
+    <image class='stars' bindtap="changeColor" bindblur="changeColorBlur" data-text="物流服务" data-index='1' data-no="{{item}}" wx:for="{{stardata}}"
+    src="{{flag[1]>=item? '../../imgs/icon/star_selected.png':'../../imgs/icon/star_unselect.png'}}" />
+    <view style='margin-left: 30rpx;'>{{startext[1]}}</view>
+</view>
+</view>-->
+<!--文本评价-->
+<view class="comment">
+  <view class="comment_text">
+    <textarea class="comment_textarea" bindinput="bindTextAreaChange" bindblur='bindTextAreaBlur' placeholder="请填写评价" style="height: 8em" value="{{content}}" maxlength="{{noteMaxLen}}" auto-focus />
+    <view class="comment_textarea_counter">{{noteNowLen}}/{{noteMaxLen}}</view>
+  </view>
+  
+</view>
+ 
+<!--添加图片-->
+
+<view class="weui-cells">
+  <view class="weui-cell">
+    <view class="weui-cell__bd">
+      <view class="weui-uploader">
+        <view class="weui-uploader__hd">
+          <view class="weui-uploader__title">点击可预览选好的图片</view>
+          <view class="weui-uploader__info"></view>
+        </view>
+        <view class="weui-uploader__bd">
+          <view class="weui-uploader__files">
+            <block wx:for="{{photos}}" wx:for-item="image">
+              <view class="weui-uploader__file">
+                <image class="weui-uploader__img" src="{{image.src}}" data-src="{{image}}" bindtap="previewImage"></image>
+              </view>
+            </block>
+          </view>
+          <view class="weui-uploader__input-box" wx:if="{{photos.length<=8}}">
+            <image class="weui-uploader__input" bindtap="chooseImage" src='../../imgs/icon/add.png'></image>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+    
+<view class="btn-box">
+    <button type='primary' formType="submit" size="default" bindtap='formSubmit'>提交</button>
+</view>
+</form>

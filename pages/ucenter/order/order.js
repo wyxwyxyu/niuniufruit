@@ -8,10 +8,10 @@ Page({
    */
   data: {
     url: app.globalData.url,
-    navbar: ['全部', '待付款','待发货','待收货','待评价'],
+    navbar: ['全部', '待付款','待拣货','待发货','待收货'],
     currentTab: 0,
     content:[],
-    statusList: ['待支付', '待发货','待发货','待收货','交易完成']
+    statusList: ['待支付', '待拣货','待发货','待收货','交易完成','已取消']
   },
 
   /**
@@ -46,9 +46,7 @@ Page({
       this.loadData(2)
     } else if (choice == 4) {
       this.loadData(3)
-    } else if (choice == 5) {
-      this.loadData(4)
-    }
+    } 
     this.setData({
       currentTab: choice
     })

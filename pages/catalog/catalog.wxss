@@ -13,14 +13,14 @@ page {
 .search {
   height: 88rpx;
   width: 100%;
-  padding: 0 30rpx;
+  padding: 0 2rpx;
   background: #fff;
   display: flex;
   align-items: center;
 }
 
 .search .input {
-  width: 690rpx;
+  width: 98%;
   height: 56rpx;
   background: #ededed;
   border-radius: 8rpx;

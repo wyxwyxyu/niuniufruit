@@ -1,7 +1,9 @@
 const util = require('../../../utils/util.js');
 const api = require('../../../config/api.js');
+var app = getApp();
 Page({
   data: {
+    url: app.globalData.url,
     postage: 39,
     currentSpec: 0,
     number: 1,
@@ -15,12 +17,19 @@ Page({
     var pid = option.pid
     util.request(api.GetProductDetail + '?productId=' + pid).then(function (res) {
       console.log(res.data.data)
+      let imgGroup = util.cutString(res.data.data.subImages)
       wx.hideLoading()
       if (res.data.status == 0) {
         that.setData({
          detail: res.data.data,
-         productDetailId: res.data.data.productDetailList[0].productDetailId
+         productDetailId: res.data.data.productDetailList[0].productDetailId,
+         imgGroup: imgGroup
         });
+        let content = that.escape2Html(that.data.detail.detail)
+        content.replace('<img', '<img style="width:100%;height:auto" ')
+        that.setData({
+          content:content
+        })
       }
     });
   },
@@ -30,6 +39,10 @@ Page({
     this.setData({
       currentSpec: index
     })
+  },
+  escape2Html: function (str) {
+    var arrEntities = { 'lt': '<', 'gt': '>', 'nbsp': ' ', 'amp': '&', 'quot': '"' };
+    return str.replace(/&(lt|gt|nbsp|amp|quot);/ig, function (all, t) { return arrEntities[t]; });
   },
   openCartPage: function () {
     wx.switchTab({

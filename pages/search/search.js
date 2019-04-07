@@ -1,12 +1,13 @@
 const util = require('../../utils/util.js');
 const api = require('../../config/api.js');
+var app=getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    url: app.globalData.url
   },
 
   /**

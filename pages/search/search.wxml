@@ -6,11 +6,10 @@
 </view>
 <view wx-if="{{item.length>0}}">
 
-   <navigator class="singelP" wx:for="{{item}}" wx:key="Pid" hover-class="none" open-type="navigate" url="./putInHandle/putInHandle?pid={{item.productId}}">
-        <image src="http://192.168.1.105:8080{{item.mainImage}}"class='ImgCover'></image>
+   <navigator class="singelP" wx:for="{{item}}" wx:key="Pid" hover-class="none" open-type="navigate" url="../index/detail/detail?pid={{item.productId}}">
+        <image src="{{url}}{{item.mainImage}}"class='ImgCover'></image>
         <view class="sinR">
           <view class="iName">{{item.name}}</view>
-          <view class="iDetail">{{item.detail}}</view>
           <view class="iTips">
             <view class="iTipscell">{{item.subtitle}}</view>
           </view>

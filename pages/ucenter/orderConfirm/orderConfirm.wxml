@@ -1,10 +1,13 @@
 <navigator  url="../../address/addressChoice/addressChoice" class="orderDetail" >
 <!--  -->
-  <view class="orderListTitle">
+  <view wx:if="{{addressList.length>0}}" class="orderListTitle">
 
     <view class="userName">{{addressList.address}}{{addressList.detailInformation}}</view>
     <text class="orderStatus"></text>
   </view>
+<view wx:else>
+    <text>选择收货地址</text>
+</view>
   <view class="orderListDetails">
     <view>{{addressList.receiverName}}</view>
     <view>{{addressList.receiverPhone}}</view>

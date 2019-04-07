@@ -15,7 +15,12 @@ const formatNumber = n => {
   n = n.toString()
   return n[1] ? n : '0' + n
 }
-
+//根据逗号分隔字符串，以数组形式返回
+function cutString(s){
+var arr=new Array();
+arr=s.split(",")
+return arr;
+}
 function showInfoMiss() {
   wx.showToast({
     title: '请补全信息',
@@ -108,4 +113,5 @@ module.exports = {
   request: request,
   showInfoMiss: showInfoMiss,
   showSuccess: showSuccess,
+  cutString: cutString,
 }

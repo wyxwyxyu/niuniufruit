@@ -17,6 +17,7 @@ module.exports = {
   ShippingDelete: ApiRootUrl + 'shipping/deleteByShippingId.do',//删除地址
   ShippingSelect: ApiRootUrl + 'shipping/selectByShopId.do',//查询地址
   OrderCreate: ApiRootUrl + 'order/createOrder.do',//创建订单
+  OrderCancel: ApiRootUrl + 'order/cancelOrder.do',//取消订单
 
   // IndexUrl: ApiRootUrl + 'index/index', //首页数据接口
   // CatalogList: ApiRootUrl + 'catalog/index',  //分类目录全部分类数据接口
